@@ -1,0 +1,120 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:progress_state_button/iconed_button.dart';
+import 'package:progress_state_button/progress_button.dart';
+
+import '../../../constant.dart';
+
+class AddButton extends StatelessWidget {
+  const AddButton({Key? key, required this.buttonText}) : super(key: key);
+  final String buttonText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50), color: kPrimaryColor),
+      margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: TextButton(
+        onPressed: () {},
+        child: Text(
+          buttonText,
+          style: TextStyle(color: kTextWhiteColor),
+        ),
+      ),
+    );
+  }
+}
+
+/*
+
+class AddButton extends StatefulWidget {
+  const AddButton({Key? key}) : super(key: key);
+
+  @override
+  State<AddButton> createState() => _AddButtonState();
+}
+
+class _AddButtonState extends State<AddButton> {
+
+  late String buttonText;
+  late ButtonState stateOnlyTet = ButtonState.idle;
+  late ButtonState stateTextWithIcon = ButtonState.idle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+      width: double.infinity,
+
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: ProgressButton.icon(
+        iconedButtons: {
+          ButtonState.idle: const IconedButton(
+            text: "Add Animal",
+            icon:  Icon(
+              Icons.add,
+              color: kTextWhiteColor,
+            ),
+            color: kPrimaryColor,
+          ),
+          ButtonState.loading:
+          const IconedButton(text: "loading", color: kPrimaryColor),
+          ButtonState.fail: IconedButton(
+              text: "Fail",
+              icon: const Icon(
+                Icons.cancel,
+                color: kTextWhiteColor,
+              ),
+              color: Colors.red.shade300),
+          ButtonState.success: IconedButton(
+              text: "Success",
+              icon: const Icon(
+                Icons.check,
+                color: kTextWhiteColor,
+              ),
+              color: Colors.green.shade300),
+        },
+        onPressed: onPressedIconWithText,
+        state: stateTextWithIcon,
+      ),
+    );
+  }
+
+  void onPressedIconWithText() {
+    switch (stateTextWithIcon) {
+      case ButtonState.idle:
+        stateTextWithIcon = ButtonState.loading;
+        Future.delayed(
+          const Duration(seconds: 1),
+              () {
+            setState(
+                  () {
+                stateTextWithIcon = Random.secure().nextBool()
+                    ? ButtonState.success
+                    : ButtonState.fail;
+              },
+            );
+          },
+        );
+        break;
+      case ButtonState.loading:
+        break;
+      case ButtonState.success:
+        break;
+      case ButtonState.fail:
+        stateTextWithIcon = ButtonState.idle;
+        break;
+
+    }
+    setState(() {
+      stateTextWithIcon=stateTextWithIcon;
+    });
+  }
+}
+
+
+*/
